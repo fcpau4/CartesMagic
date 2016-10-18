@@ -9,13 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
 
-    private ArrayList<String> items;
+    private ArrayList items;
     private ArrayAdapter<String> adapter;
 
     public MainActivityFragment() {
@@ -28,7 +29,10 @@ public class MainActivityFragment extends Fragment {
 
         ListView lvCartes = (ListView) view.findViewById(R.id.lvCartes);
 
-        items = new ArrayList<>();
+        String[] data = {"carta 1", "carta 2", "carta 3", "carta 4", "carta 5", "carta 6",};
+
+        items = new ArrayList<>(Arrays.asList(data));
+
         adapter = new ArrayAdapter<>(
                 getContext(),
                 R.layout.lv_cartes_row,
