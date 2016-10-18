@@ -4,6 +4,6 @@
 
     <item
         android:title="Refresh"
-        android:id="@+id/miRefresh"
+        android:id="@+id/action_Refresh"
         app:showAsAction="always" />
 </menu>
