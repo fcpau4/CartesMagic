@@ -1,5 +1,6 @@
 package com.example.a46990527d.cartesmagic;
 
+import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -84,13 +85,23 @@ public class MainActivityFragment extends Fragment {
 
     private void refresh() {
 
-        CardAPI api = new CardAPI();
-        String result = api.getCards().toString();
+        RefreshDataTask tarea = new RefreshDataTask();
+        tarea.execute();
 
-        Log.d("DEBUG", result);
     }
 
+    //metode que s'executara en segon pla i fara la crida a l'api
+    private class RefreshDataTask extends AsyncTask<Void, Void, ArrayList<Card>> {
+        @Override
+        protected ArrayList<Card> doInBackground(Void... voids) {
+            CardAPI api = new CardAPI();
+            ArrayList <Card> result = api.getCards();
+
+            Log.d("DEBUG", result.toString());
+
+            return result;
+        }
 
 
-
+    }
 }
