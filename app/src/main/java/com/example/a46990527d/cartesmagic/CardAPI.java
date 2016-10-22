@@ -17,7 +17,7 @@ public class CardAPI {
 
     private final String BASE_URL = "https://api.magicthegathering.io/v1";
 
-    String getCards() {
+    public ArrayList<Card> getCards(){
         Uri builtUri = Uri.parse(BASE_URL)
                 .buildUpon()
                 .appendPath("cards")
@@ -30,7 +30,8 @@ public class CardAPI {
             //creem un objecte Json a partir de l'string de resposta amb el metode
             JSONObject JSONCards = TratarStringRespuesta(JsonResponse);
 
-            return JsonResponse;
+            return ConvertirEnCarta(JSONCards);
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException j){
