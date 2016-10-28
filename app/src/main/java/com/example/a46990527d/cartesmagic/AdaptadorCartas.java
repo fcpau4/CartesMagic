@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -34,6 +35,14 @@ public class AdaptadorCartas extends ArrayAdapter<Card> {
 
         TextView type = (TextView) convertView.findViewById(R.id.tvType);
         type.setText(carta.getType());
+
+        TextView rarity = (TextView) convertView.findViewById(R.id.tvRarity);
+        rarity.setText(carta.getRarity());
+
+        TextView colors = (TextView) convertView.findViewById(R.id.tvColors);
+        colors.setText(carta.getColors());
+
+
 
 
 
