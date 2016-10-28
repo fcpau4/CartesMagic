@@ -1,5 +1,6 @@
 package com.example.a46990527d.cartesmagic;
 
+import com.bumptech.glide.Glide;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+
+import static com.example.a46990527d.cartesmagic.R.id.ivImatge;
 
 /**
  * Created by Usuario on 22/10/2016.
@@ -41,6 +44,9 @@ public class AdaptadorCartas extends ArrayAdapter<Card> {
 
         TextView colors = (TextView) convertView.findViewById(R.id.tvColors);
         colors.setText(carta.getColors());
+
+        ImageView image = (ImageView) convertView.findViewById(R.id.ivImatge);
+        Glide.with(getContext()).load(carta.getImageUrl()).into(image);
 
 
 
