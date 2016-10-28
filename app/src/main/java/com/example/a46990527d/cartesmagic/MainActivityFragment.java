@@ -103,6 +103,7 @@ public class MainActivityFragment extends Fragment {
     private class RefreshDataTask extends AsyncTask<Void, Void, ArrayList<Card>> {
         @Override
         protected ArrayList<Card> doInBackground(Void... voids) {
+
             CardAPI api = new CardAPI();
             ArrayList <Card> result = api.getCards();
 

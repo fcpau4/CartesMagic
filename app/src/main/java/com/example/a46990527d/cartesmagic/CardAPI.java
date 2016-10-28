@@ -7,7 +7,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by 46990527d on 18/10/16.
@@ -17,7 +19,7 @@ public class CardAPI {
 
     private final String BASE_URL = "https://api.magicthegathering.io/v1";
 
-    public ArrayList<Card> getCards(){
+    public ArrayList<Card> getCards() {
         Uri builtUri = Uri.parse(BASE_URL)
                 .buildUpon()
                 .appendPath("cards")
@@ -34,22 +36,22 @@ public class CardAPI {
 
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (JSONException j){
+        } catch (JSONException j) {
             j.printStackTrace();
         }
         return null;
     }
 
     // A partir de l'String , el convertim a un objecte JSON per poder tractar-lo
-    public JSONObject TratarStringRespuesta (String respuesta) throws JSONException {
+    public JSONObject TratarStringRespuesta(String respuesta) throws JSONException {
 
         JSONObject obj = new JSONObject(respuesta);
 
-        return  obj;
+        return obj;
     }
 
     //a Partir de l'objecte JSON rebut (que conte Cards amb Totes les cartes juntes), alimentem el nostre arraylist Card per a interactuar mes endavant
-    public ArrayList<Card> ConvertirEnCarta (JSONObject cartas) throws JSONException {
+    public ArrayList<Card> ConvertirEnCarta(JSONObject cartas) throws JSONException {
 
         ArrayList<Card> cards = new ArrayList<>();
         JSONArray JSONCards = cartas.getJSONArray("cards");
@@ -59,6 +61,8 @@ public class CardAPI {
             Card Carta = new Card();
             Carta.setName(objeto.getString("name"));
             Carta.setType(objeto.getString("type"));
+            Carta.setRarity(objeto.getString("rarity"));
+            Carta.setColors(objeto.getString("colors"));
             cards.add(Carta);
         }
 

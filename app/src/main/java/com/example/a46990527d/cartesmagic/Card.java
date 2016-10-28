@@ -1,5 +1,8 @@
 package com.example.a46990527d.cartesmagic;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by 46990527d on 18/10/16.
  */
@@ -8,6 +11,8 @@ public class Card {
 
     private String name;
     private String type;
+    private String colors;
+    private String rarity;
 
 
     public String getName() {
@@ -26,13 +31,30 @@ public class Card {
         this.type = type;
     }
 
+
+    public String getRarity() {
+        return rarity;
+    }
+
+    public void setRarity(String rarity) {
+        this.rarity = rarity;
+    }
+
+    public String getColors() {
+        return colors;
+    }
+
+    public void setColors(String colors) {
+        this.colors = colors;
+    }
+
     @Override
     public String toString() {
         return "Card{" +
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
+                ", colors=" + colors +
+                ", rarity='" + rarity + '\'' +
                 '}';
     }
-
-
 }
