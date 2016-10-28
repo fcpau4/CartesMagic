@@ -63,6 +63,7 @@ public class CardAPI {
             Carta.setType(objeto.getString("type"));
             Carta.setRarity(objeto.getString("rarity"));
             Carta.setColors(objeto.getString("colors"));
+            Carta.setImageUrl(objeto.getString("imageUrl"));
             cards.add(Carta);
         }
 

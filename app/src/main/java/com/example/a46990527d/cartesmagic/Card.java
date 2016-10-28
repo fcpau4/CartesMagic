@@ -13,6 +13,7 @@ public class Card {
     private String type;
     private String colors;
     private String rarity;
+    private String imageUrl;
 
 
     public String getName() {
@@ -48,13 +49,22 @@ public class Card {
         this.colors = colors;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public String toString() {
         return "Card{" +
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
-                ", colors=" + colors +
+                ", colors='" + colors + '\'' +
                 ", rarity='" + rarity + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }
