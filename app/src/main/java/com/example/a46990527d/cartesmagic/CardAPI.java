@@ -19,6 +19,33 @@ public class CardAPI {
 
     private final String BASE_URL = "https://api.magicthegathering.io/v1";
 
+    public ArrayList<Card> rarityCards (ArrayList<Card> cards, String colors){
+
+        ArrayList<Card> byrarity = new ArrayList<Card>();
+
+        for (Card c: cards) {
+            if (c.getColors()==colors){
+                byrarity.add(c);
+            }
+        }
+
+        return byrarity;
+    }
+
+    public ArrayList<Card> colorCards (ArrayList<Card> cards, String rarity){
+
+        ArrayList<Card> bycolors = new ArrayList<Card>();
+
+        for (Card c: cards) {
+            if (c.getColors()==rarity){
+                bycolors.add(c);
+            }
+        }
+
+        return bycolors;
+    }
+
+
     public ArrayList<Card> getCards() {
         Uri builtUri = Uri.parse(BASE_URL)
                 .buildUpon()
