@@ -25,10 +25,38 @@ public class CardAPI {
                 .appendPath("cards")
                 .build();
 
+        return cridaApi(builtUri);
+
+    }
+
+    public ArrayList<Card> getCardsByRarity(String rarity) {
+        Uri builtUri = Uri.parse(BASE_URL)
+                .buildUpon()
+                .appendPath("cards")
+                .appendQueryParameter("rarity", rarity)
+                .build();
+
+        return cridaApi(builtUri);
+    }
+
+
+    public ArrayList<Card> getCardsByColor(String color) {
+        Uri builtUri = Uri.parse(BASE_URL)
+                .buildUpon()
+                .appendPath("cards")
+                .appendQueryParameter("colors", color)
+                .build();
+
+        return cridaApi(builtUri);
+    }
+
+
+    private ArrayList<Card> cridaApi(Uri builtUri) {
 
         try {
             String url = builtUri.toString();
             String JsonResponse = HttpUtils.get(url);
+
             //creem un objecte Json a partir de l'string de resposta amb el metode
             JSONObject JSONCards = TratarStringRespuesta(JsonResponse);
 
@@ -41,6 +69,26 @@ public class CardAPI {
         }
         return null;
     }
+
+    private ArrayList<Card> cridaApi(String url) {
+
+        try {
+
+            String JsonResponse = HttpUtils.get(url);
+
+            //creem un objecte Json a partir de l'string de resposta amb el metode
+            JSONObject JSONCards = TratarStringRespuesta(JsonResponse);
+
+            return ConvertirEnCarta(JSONCards);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException j) {
+            j.printStackTrace();
+        }
+        return null;
+    }
+
 
     // A partir de l'String , el convertim a un objecte JSON per poder tractar-lo
     public JSONObject TratarStringRespuesta(String respuesta) throws JSONException {
