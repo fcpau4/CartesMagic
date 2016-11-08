@@ -1,6 +1,7 @@
 package com.example.a46990527d.cartesmagic;
 
 import android.net.Uri;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,30 +20,38 @@ public class CardAPI {
 
     private final String BASE_URL = "https://api.magicthegathering.io/v1";
 
-    public ArrayList<Card> rarityCards (ArrayList<Card> cards, String colors){
+    public ArrayList<Card> getCardsByColor (String colors){
+        Uri builtUri = Uri.parse(BASE_URL)
+                .buildUpon()
+                .appendPath("cards")
+                .appendQueryParameter("colors", colors)
+                .build();
 
-        ArrayList<Card> byrarity = new ArrayList<Card>();
-
-        for (Card c: cards) {
-            if (c.getColors()==colors){
-                byrarity.add(c);
-            }
-        }
-
-        return byrarity;
+        return CridaApi(builtUri);
     }
 
-    public ArrayList<Card> colorCards (ArrayList<Card> cards, String rarity){
+    public ArrayList<Card> getCardsByRarity (String rarity){
 
-        ArrayList<Card> bycolors = new ArrayList<Card>();
+        Uri builtUri = Uri.parse(BASE_URL)
+                .buildUpon()
+                .appendPath("cards")
+                .appendQueryParameter("rarity", rarity)
+                .build();
 
-        for (Card c: cards) {
-            if (c.getColors()==rarity){
-                bycolors.add(c);
-            }
-        }
+        return CridaApi(builtUri);
+    }
 
-        return bycolors;
+    public ArrayList<Card> getCardsByColorAndRarity (String rarity, String colors) {
+
+        Uri builtUri = Uri.parse(BASE_URL)
+                .buildUpon()
+                .appendPath("cards")
+                .appendQueryParameter("colors", colors)
+                .appendQueryParameter("rarity", rarity)
+                .build();
+
+        return CridaApi(builtUri);
+
     }
 
 
@@ -52,9 +61,16 @@ public class CardAPI {
                 .appendPath("cards")
                 .build();
 
+       return CridaApi(builtUri);
+
+
+    }
+
+    public ArrayList <Card> CridaApi  ( Uri builtUri ){
 
         try {
             String url = builtUri.toString();
+            Log.d("URL", url);
             String JsonResponse = HttpUtils.get(url);
             //creem un objecte Json a partir de l'string de resposta amb el metode
             JSONObject JSONCards = TratarStringRespuesta(JsonResponse);
@@ -91,9 +107,16 @@ public class CardAPI {
             Carta.setRarity(objeto.getString("rarity"));
             if (objeto.has("colors")) {
                 Carta.setColors(objeto.getString("colors"));
-            } else
+            } else {
                 Carta.setColors("no color");
-            Carta.setImageUrl(objeto.getString("imageUrl"));
+            }
+
+            if (objeto.has("imageUrl")){
+                Carta.setImageUrl(objeto.getString("imageUrl"));
+            }else{
+                Carta.setImageUrl(null);
+            }
+
             cards.add(Carta);
         }
 
