@@ -48,7 +48,6 @@
         <item>Black</item>
         <item>Red</item>
         <item>Green</item>
-        <item>no color</item>
         <item>All</item>
     </string-array>
     <string-array name="pref_colors_list_values">
@@ -57,7 +56,6 @@
         <item>Black</item>
         <item>Red</item>
         <item>Green</item>
-        <item>no color</item>
         <item>All</item>
     </string-array>
 

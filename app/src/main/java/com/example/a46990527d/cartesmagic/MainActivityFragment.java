@@ -118,9 +118,9 @@ public class MainActivityFragment extends Fragment {
             }else if (rarity.equalsIgnoreCase(rarity) && colors.equalsIgnoreCase("All")) {
                 result = api.getCardsByRarity(rarity);
             }else if (rarity.equalsIgnoreCase(rarity) && colors.equalsIgnoreCase(colors)){
-                result = api.getCardsByColorAndRarity(rarity,colors);
-            }
+                 result = api.getCardsByColorAndRarity(rarity,colors);
 
+            }
             Log.d("DEBUG", result != null ? result.toString() : null);
 
             return result;

@@ -108,7 +108,7 @@ public class CardAPI {
             if (objeto.has("colors")) {
                 Carta.setColors(objeto.getString("colors"));
             } else {
-                Carta.setColors("no color");
+                Carta.setColors(null);
             }
 
             if (objeto.has("imageUrl")){
